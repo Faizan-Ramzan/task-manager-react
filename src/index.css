@@ -59,10 +59,11 @@ body {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  border-left: 5px solid transparent;
 }
 
 .task.reminder {
-  border-left: 5px solid green;
+  border-left-color: green;
 }
 
 .task h3 {
