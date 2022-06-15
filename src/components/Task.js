@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTimes, FiEdit2 } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
 const task = ({ task, onDelete, onToggle, onUpdate }) => {
     return (
@@ -11,9 +11,9 @@ const task = ({ task, onDelete, onToggle, onUpdate }) => {
                 <p>{task.day}</p>
             </div>
             <div className='buttons'>
-                <FaTimes style={{ color: "red", cursor: "Pointer" }} onClick={() => onDelete(task.id)} />
+                <button className='small-btn delete' style={{ backgroundColor: "red"}} onClick={() => onDelete(task.id)}>Delete</button>
                 <br />
-                <button onClick={() => onUpdate(task.id)} >update</button>
+                <button className='small-btn update' style={{ backgroundColor: "blue"}} onClick={() => onUpdate(task)} >Update</button>
             </div>
         </div>
     )

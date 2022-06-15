@@ -6,6 +6,7 @@ import AddTask from "./components/AddTask";
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
+  const [currentData, setCurrentData] = useState("")
 
   const [tasks, setTasks] = useState([
     {
@@ -36,6 +37,12 @@ function App() {
     setTasks([...tasks, newTask])
   }
 
+  //update Task
+  const updateTask = (task) => {
+    setShowAddTask(true)
+    setCurrentData(task)
+  }
+
   //Delete Task
   const deleteTask = (id) =>{
     setTasks(tasks.filter((task) => task.id !== id))
@@ -49,9 +56,9 @@ function App() {
   return (
     <div className="container">
       <Header title="Task Tracker" onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
-      {showAddTask && <AddTask onAdd={addTask}/>}
+      {showAddTask && <AddTask onAdd={addTask} onUpdateTask={updateTask}/>}
 
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : "No Tasks Available"}
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} onUpdate={updateTask}/> : "No Tasks Available"}
     </div>
   );
 }

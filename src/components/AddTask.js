@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 
-const Add = ({ onAdd }) => {
+const Add = ({ onAdd, onUpdate }) => {
     const [text, setText] = useState("")
     const [day, setDay] = useState("")
     const [reminder, setReminder] = useState(false)
@@ -25,7 +25,7 @@ const Add = ({ onAdd }) => {
         <form className="add-form" onSubmit={onSubmit}>
             <div className="form-control">
                 <label htmlFor="">Task</label>
-                <input type="text" placeholder='Add Task' value={text} onChange={(e) => setText(e.target.value)} />
+                <input type="text" placeholder='Add Task'  value={text} onChange={(e) => setText(e.target.value)} />
             </div>
             <div className="form-control">
                 <label htmlFor="">Day & Time</label>
