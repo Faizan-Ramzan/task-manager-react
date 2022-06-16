@@ -25,7 +25,7 @@ const Add = ({ onAdd, onUpdate }) => {
         <form className="add-form" onSubmit={onSubmit}>
             <div className="form-control">
                 <label htmlFor="">Task</label>
-                <input type="text" placeholder='Add Task'  value={text} onChange={(e) => setText(e.target.value)} />
+                <input type="text" placeholder='Add Task'  value={text} onChange={(e) => setText(e.target.value)}/>
             </div>
             <div className="form-control">
                 <label htmlFor="">Day & Time</label>

@@ -40,7 +40,8 @@ function App() {
   //update Task
   const updateTask = (task) => {
     setShowAddTask(true)
-    setCurrentData(task)
+    console.log(task)
+    // return task.id , task.text, task.day, task.reminder
   }
 
   //Delete Task
@@ -56,7 +57,7 @@ function App() {
   return (
     <div className="container">
       <Header title="Task Tracker" onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
-      {showAddTask && <AddTask onAdd={addTask} onUpdateTask={updateTask}/>}
+      {showAddTask && <AddTask onAdd={addTask} onUpdate={updateTask}/>}
 
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} onUpdate={updateTask}/> : "No Tasks Available"}
     </div>
