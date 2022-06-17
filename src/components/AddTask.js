@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react'
 
-const Add = ({ onAdd, onUpdate }) => {
-    const [text, setText] = useState("")
-    const [day, setDay] = useState("")
-    const [reminder, setReminder] = useState(false)
+const Add = ({ onAdd, currentData, onSetUpdate }) => {
+    const [text, setText] = useState(currentData ? currentData.text : "")
+    const [day, setDay] = useState(currentData ? currentData.day : "")
+    const [reminder, setReminder] = useState(currentData ? currentData.reminder : false)
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +14,12 @@ const Add = ({ onAdd, onUpdate }) => {
             return
         }
 
-        onAdd({ text, day, reminder })
+        if(currentData){
+            let id = currentData.id;
+            onSetUpdate({id, text, day, reminder})
+        }else{
+            onAdd({ text, day, reminder })
+        }
 
         setText("");
         setDay("");

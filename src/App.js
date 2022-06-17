@@ -6,7 +6,7 @@ import AddTask from "./components/AddTask";
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
-  const [currentData, setCurrentData] = useState("")
+  const [currentData, setCurrentData] = useState([])
 
   const [tasks, setTasks] = useState([
     {
@@ -37,11 +37,21 @@ function App() {
     setTasks([...tasks, newTask])
   }
 
-  //update Task
+  //Set update Task
   const updateTask = (task) => {
-    setShowAddTask(true)
-    console.log(task)
+    setShowAddTask(false)
+    setTimeout(() => {  
+      setCurrentData(task)
+      setShowAddTask(true)
+    }, 200);
     // return task.id , task.text, task.day, task.reminder
+  }
+
+  //Update Task
+  const onSetUpdates = (task) => {
+    console.log("update Set Data ", task)
+    setTasks(tasks.map((data) => data.id === task.id ? {...data, text: task.text, day: task.day, reminder: task.reminder } : data))
+    setShowAddTask(false)
   }
 
   //Delete Task
@@ -57,7 +67,7 @@ function App() {
   return (
     <div className="container">
       <Header title="Task Tracker" onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
-      {showAddTask && <AddTask onAdd={addTask} onUpdate={updateTask}/>}
+      {showAddTask && <AddTask onAdd={addTask} onUpdate={updateTask} currentData={currentData} tasks={tasks} onSetUpdate={onSetUpdates}/>}
 
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} onUpdate={updateTask}/> : "No Tasks Available"}
     </div>
