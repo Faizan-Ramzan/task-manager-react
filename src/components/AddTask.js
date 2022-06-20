@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 
 const Add = ({ onAdd, currentData, onSetUpdate }) => {
+    const [id, setId] = useState(currentData ? currentData.id : "")
     const [text, setText] = useState(currentData ? currentData.text : "")
     const [day, setDay] = useState(currentData ? currentData.day : "")
     const [reminder, setReminder] = useState(currentData ? currentData.reminder : false)
@@ -14,11 +15,14 @@ const Add = ({ onAdd, currentData, onSetUpdate }) => {
             return
         }
 
-        if(currentData){
+        if(currentData.length === 0){
+            console.log("i am Add");
+            onAdd({id, text, day, reminder })
+        }else{
+            console.log(currentData.length)
+            console.log("i am Update");
             let id = currentData.id;
             onSetUpdate({id, text, day, reminder})
-        }else{
-            onAdd({ text, day, reminder })
         }
 
         setText("");
